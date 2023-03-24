@@ -4,11 +4,12 @@ export type TagType = {
     id: string
     title: string
 }
-
 type TagsPropsType = {
     tags: Array<TagType>
     addTag: (title: string) => void
     removeTag: (id: string) => void
+    changeTagFilter: (filterValue: string) => void
+    filter: string | null
 }
 
 export const Tags: React.FC<TagsPropsType> = (props) => {
@@ -29,9 +30,12 @@ export const Tags: React.FC<TagsPropsType> = (props) => {
 
             {props.tags.map((tag) => {
                     const removeTagHandler = () => props.removeTag(tag.id)
+
+                    const changeTagFilterHandler = () => props.changeTagFilter(tag.title)
+
                     return (
                         <div key={tag.id}>
-                            <button>{tag.title}</button>
+                            <button onClick={changeTagFilterHandler}>{tag.title}</button>
                             <button onClick={removeTagHandler}>X</button>
                         </div>
                     )
