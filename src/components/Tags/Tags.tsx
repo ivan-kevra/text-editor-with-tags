@@ -1,5 +1,4 @@
 import React, {ChangeEvent, useState} from 'react';
-import {v1} from "uuid";
 
 export type TagType = {
     id: string

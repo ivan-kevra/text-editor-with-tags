@@ -25,14 +25,16 @@ export const Notes: React.FC<NotesPropsType> = (props) => {
 
         let titleArray = title.trim().split(' ') // из строки сделали массив для обработки
 
+        let newArray: Array<TagType> = []
 
         for (let i = 0; i < titleArray.length; i++) {
+
             if (titleArray[i].startsWith('#')) {
                 let newTag = {id: v1(), title: titleArray[i]}
-                let newArray = [newTag, ...props.tags]
+                newArray = [newTag, ...newArray]
                 console.log(newArray)
-                props.addTagsFromNotes(newArray)
             }
+            props.addTagsFromNotes(newArray)
         }
     }
     const setNoteTitle = (event: ChangeEvent<HTMLInputElement>) => setTitle(event.currentTarget.value)
