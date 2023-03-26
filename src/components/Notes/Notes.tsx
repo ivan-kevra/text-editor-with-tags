@@ -19,7 +19,7 @@ type NotesPropsType = {
 export const Notes: React.FC<NotesPropsType> = (props) => {
     const [title, setTitle] = useState('')
     const addNoteHandler = () => {
-        props.addNote(title.replace(/[^a-zа-яё0-9\s]/gi, ' '))
+        props.addNote(title.replace(/[^a-zа-яё0-9\s]/gi, ''))
         setTitle('')
 
         let titleArray = title.trim().split(' ') // из строки сделали массив для обработки
@@ -27,7 +27,7 @@ export const Notes: React.FC<NotesPropsType> = (props) => {
 
         for (let i = 0; i < titleArray.length; i++) {
             if (titleArray[i].startsWith('#')) {
-                let newTag = {id: v1(), title: titleArray[i].replace(/[^a-zа-яё0-9\s]/gi, ' ')}
+                let newTag = {id: v1(), title: titleArray[i].replace(/[^a-zа-яё0-9\s]/gi, '')}
                 newArray = [newTag, ...newArray]
                 props.addTagsFromNotes(newArray)
             }

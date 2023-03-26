@@ -43,7 +43,7 @@ export const App = () => {
     const [tags, setTags] = useState<Array<TagType>>(state.tags)
 
 
-    let [filter, setFilter] = useState<string | null>(null)
+    let [filter, setFilter] = useState<string>('')
 
     const addNote = (title: string) => {
         setNotes([{id: v1(), title}, ...notes])
@@ -68,14 +68,19 @@ export const App = () => {
         setFilter(filterValue)
     }
     const showAllTagsHandler = () => {
-        setFilter(null)
+        setFilter('')
     }
 
     let filteredNotes = notes
 
     if (filter) {
-        filteredNotes = filteredNotes.filter((note) => note.title == filter)
+        filteredNotes = filteredNotes.filter((note) => note.title.includes(filter))
     }
+
+    // if (JSON.stringify(filteredNotes).includes(filter)) {
+    //     console.log(JSON.stringify(filteredNotes))
+    //     filteredNotes = filteredNotes.filter((note) => note.title == filter)
+    // }
 
     return (
         <div className="App">
