@@ -5,44 +5,41 @@ import {Notes, NoteType} from "./components/Notes/Notes";
 import {Tags, TagType} from "./components/Tags/Tags";
 
 
+export const state = {
+    ["notes"]: [
+        {
+            "id": v1(),
+            "title": "active"
+        },
+        {
+            "id": v1(),
+            "title": "completed"
+        },
+        {
+            "id": v1(),
+            "title": "all"
+        }
+    ],
+    ["tags"]: [
+        {
+            "id": v1(),
+            "title": "active"
+        },
+        {
+            "id": v1(),
+            "title": "completed"
+        },
+        {
+            "id": "f706fbc4-ca5e-11ed-8023-09a570543186",
+            "title": "all"
+        }
+    ]
+}
+
 export const App = () => {
 
-    const state = {
-        "notes": [
-            {
-                "id": "f706d4b0-ca5e-11ed-8023-09a570543186",
-                "title": "active"
-            },
-            {
-                "id": "f706fbc0-ca5e-11ed-8023-09a570543186",
-                "title": "completed"
-            },
-            {
-                "id": "f706fbc1-ca5e-11ed-8023-09a570543186",
-                "title": "all"
-            }
-        ],
-        "tags": [
-            {
-                "id": "f706fbc2-ca5e-11ed-8023-09a570543186",
-                "title": "active"
-            },
-            {
-                "id": "f706fbc3-ca5e-11ed-8023-09a570543186",
-                "title": "completed"
-            },
-            {
-                "id": "f706fbc4-ca5e-11ed-8023-09a570543186",
-                "title": "all"
-            }
-        ]
-    }
-
-
-    const [notes, setNotes] = useState<Array<NoteType>>(state.notes)
-    const [tags, setTags] = useState<Array<TagType>>(state.tags)
-
-
+    let [notes, setNotes] = useState<Array<NoteType>>(state.notes)
+    let [tags, setTags] = useState<Array<TagType>>(state.tags)
     let [filter, setFilter] = useState<string>('')
 
     const addNote = (title: string) => {
@@ -50,6 +47,11 @@ export const App = () => {
     }
     const removeNote = (noteId: string) => {
         setNotes(notes.filter((note) => note.id !== noteId))
+    }
+    const changeNoteName = (noteId: string, title: string) => {
+        setNotes(notes.map((note) => note.id === noteId
+            ? {...note, title}
+            : note))
     }
 
     const addTag = (title: string) => {
@@ -59,14 +61,15 @@ export const App = () => {
         setTags(tags.filter((tag) => tag.id !== tagId))
     }
 
+
     const addTagsFromNotes = (newTags: Array<TagType>) => {
         setTags([...newTags, ...tags])
     }
 
     const changeTagFilter = (filterValue: string) => {
-        console.log('filter changed')
         setFilter(filterValue)
     }
+
     const showAllTagsHandler = () => {
         setFilter('')
     }
@@ -74,13 +77,9 @@ export const App = () => {
     let filteredNotes = notes
 
     if (filter) {
-        filteredNotes = filteredNotes.filter((note) => note.title.includes(filter))
+        filteredNotes = notes.filter((note) => note.title.includes(filter))
     }
 
-    // if (JSON.stringify(filteredNotes).includes(filter)) {
-    //     console.log(JSON.stringify(filteredNotes))
-    //     filteredNotes = filteredNotes.filter((note) => note.title == filter)
-    // }
 
     return (
         <div className="App">
@@ -90,7 +89,9 @@ export const App = () => {
                 addNote={addNote}
                 removeNote={removeNote}
                 tags={tags}
-                addTagsFromNotes={addTagsFromNotes}/>
+                addTagsFromNotes={addTagsFromNotes}
+                changeNoteName={changeNoteName}
+            />
             <Tags tags={tags}
                   addTag={addTag}
                   removeTag={removeTag}

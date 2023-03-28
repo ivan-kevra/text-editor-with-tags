@@ -14,6 +14,7 @@ type NotesPropsType = {
     removeNote: (noteId: string) => void
     tags: Array<TagType>
     addTagsFromNotes: (newTags: Array<TagType>) => void
+    changeNoteName: (noteId: string, title: string) => void
 }
 
 export const Notes: React.FC<NotesPropsType> = (props) => {
@@ -43,11 +44,14 @@ export const Notes: React.FC<NotesPropsType> = (props) => {
             </h2>
             {props.notes.map((note) => {
                 const removeNoteHandler = () => props.removeNote(note.id)
+                const changeNoteNameHandler = (newTitle: string) => {
+                    props.changeNoteName(note.id, newTitle)
+                }
 
                 return (
                     <div key={note.id}>
+                        <Note title={note.title} changeNoteName={changeNoteNameHandler}/>
                         <button onClick={removeNoteHandler}>X</button>
-                        <Note id={note.id} title={note.title}/>
                     </div>
                 )
             })}

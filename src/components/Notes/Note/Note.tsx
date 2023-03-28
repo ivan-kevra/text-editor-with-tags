@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useState} from 'react';
 
 type NotePropsType = {
-    id: string
     title: string
+    changeNoteName: (newTitle: string) => void
 }
 
 export const Note: React.FC<NotePropsType> = (props) => {
@@ -10,18 +10,22 @@ export const Note: React.FC<NotePropsType> = (props) => {
     const [editMode, setEditMode] = useState(false)
     const [title, setTitle] = useState(props.title)
 
-    const editNoteHandler = () => setEditMode(!editMode)
+    const activateEditMode = () => {
+        setEditMode(true);
+    }
+    const activateViewMode = () => {
+        setEditMode(false);
+        props.changeNoteName(title);
+    }
+
     const changeTitleHandler = (event: ChangeEvent<HTMLInputElement>) => setTitle(event.currentTarget.value)
 
     return (
-        <span key={props.id}>
+        <>
             {editMode
-                ? <input value={title} onChange={changeTitleHandler}/>
-                : title}
-
-            <button onClick={editNoteHandler}>edit note</button>
-        </span>
-
-    );
+                ? <input value={title} onChange={changeTitleHandler} autoFocus onBlur={activateViewMode}/>
+                : <span onDoubleClick={activateEditMode}>{title}</span>}
+        </>
+    )
 };
 
