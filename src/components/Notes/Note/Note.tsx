@@ -10,9 +10,8 @@ export const Note: React.FC<NotePropsType> = (props) => {
     const [editMode, setEditMode] = useState(false)
     const [title, setTitle] = useState(props.title)
 
-    const activateEditMode = () => {
-        setEditMode(true);
-    }
+    const activateEditMode = () => setEditMode(true);
+
     const activateViewMode = () => {
         setEditMode(false);
         props.changeNoteName(title);

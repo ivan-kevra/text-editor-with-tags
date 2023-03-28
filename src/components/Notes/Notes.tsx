@@ -2,6 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import {Note} from "./Note/Note";
 import {TagType} from "../Tags/Tags";
 import {v1} from "uuid";
+import style from './Notes.module.css'
 
 export type NoteType = {
     id: string
@@ -37,8 +38,8 @@ export const Notes: React.FC<NotesPropsType> = (props) => {
     const setNoteTitle = (event: ChangeEvent<HTMLInputElement>) => setTitle(event.currentTarget.value)
 
     return (
-        <div>
-            <h2>
+        <div className={style.NotesContainer}>
+            <h2 className={style.addForm}>
                 <button onClick={addNoteHandler}>add note</button>
                 <input value={title} onChange={setNoteTitle}/>
             </h2>

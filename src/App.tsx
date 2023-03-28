@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {v1} from 'uuid';
-import './App.css';
+import style from './App.module.css'
 import {Notes, NoteType} from "./components/Notes/Notes";
 import {Tags, TagType} from "./components/Tags/Tags";
 
@@ -82,7 +82,7 @@ export const App = () => {
 
 
     return (
-        <div className="App">
+        <div className={style.App}>
             <h1>Редактор заметок</h1>
             <Notes
                 notes={filteredNotes}

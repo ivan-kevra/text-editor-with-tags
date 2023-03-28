@@ -1,0 +1,13 @@
+
+
+.NotesContainer {
+    background-color: cyan;
+}
+.addForm {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    background-color:#4682B4;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
