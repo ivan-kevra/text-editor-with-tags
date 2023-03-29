@@ -6,7 +6,7 @@ import {Tags, TagType} from "./components/Tags/Tags";
 
 
 export const state = {
-    ["notes"]: [
+    "notes": [
         {
             "id": v1(),
             "title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500srm."
@@ -21,7 +21,7 @@ export const state = {
         },
 
     ],
-    ["tags"]: [
+    "tags": [
         {
             "id": v1(),
             "title": "Lorem"
