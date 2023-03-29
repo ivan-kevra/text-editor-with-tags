@@ -53,12 +53,14 @@ export const Notes: React.FC<NotesPropsType> = (props) => {
                     }
                     return (
                         <div key={note.id} className={style.notes}>
-                            <Note title={note.title} changeNoteName={changeNoteNameHandler}/>
+                            <Note title={note.title} changeNoteName={changeNoteNameHandler} tags={props.tags}/>
                             <button onClick={removeNoteHandler} className={style.deleteNoteButton}>Delete</button>
                         </div>
                     )
                 })}
             </div>
+
+
 
         </div>
     );
