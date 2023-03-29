@@ -45,6 +45,7 @@ $backGroundColor: cornsilk;
           background-color: chocolate;
           display: flex;
           flex-direction: column;
+          max-width: 30%;
 
           align-items: center;
           margin: 20px;
@@ -54,6 +55,9 @@ $backGroundColor: cornsilk;
 
           .note {
             padding: 20px;
+
+            .noteButton22 {
+            }
           }
 
           .deleteNoteButton {
@@ -113,4 +117,9 @@ $backGroundColor: cornsilk;
     text-align: center;
     background-color: chocolate;
   }
+}
+
+.textInput {
+  width: 100%;
+  height: 200px;
 }

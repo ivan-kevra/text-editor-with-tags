@@ -25,9 +25,7 @@ export const Notes: React.FC<NotesPropsType> = (props) => {
     const addNoteHandler = () => {
         props.addNote(title.replace(/[^a-zа-яё0-9\s]/gi, ''))
         setTitle('')
-
-
-        let titleArray = title.trim().split(' ') // из строки сделали массив для обработки
+        let titleArray = title.trim().split(' ')
         let newArray: Array<TagType> = []
         for (let i = 0; i < titleArray.length; i++) {
             if (titleArray[i].startsWith('#')) {
@@ -37,7 +35,6 @@ export const Notes: React.FC<NotesPropsType> = (props) => {
             }
         }
     }
-
 
 
     const setNoteTitle = (event: ChangeEvent<HTMLInputElement>) => setTitle(event.currentTarget.value)
@@ -54,7 +51,6 @@ export const Notes: React.FC<NotesPropsType> = (props) => {
                     const changeNoteNameHandler = (newTitle: string) => {
                         props.changeNoteName(note.id, newTitle)
                     }
-
                     return (
                         <div key={note.id} className={style.notes}>
                             <Note title={note.title} changeNoteName={changeNoteNameHandler}/>

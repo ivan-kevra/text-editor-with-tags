@@ -18,15 +18,19 @@ export const Note: React.FC<NotePropsType> = (props) => {
         props.changeNoteName(title);
     }
 
-    const changeTitleHandler = (event: ChangeEvent<HTMLInputElement>) => setTitle(event.currentTarget.value)
-
-
+    const changeTitleHandler = (event: ChangeEvent<HTMLTextAreaElement>) => setTitle(event.currentTarget.value)
 
     return (
         <div className={style.note}>
             {editMode
-                ? <input value={title} onChange={changeTitleHandler} autoFocus onBlur={activateViewMode}/>
-                : <span onDoubleClick={activateEditMode}>{title}</span>}
+                ? <div>
+                    <textarea value={title} onChange={changeTitleHandler} className={style.textInput}/>
+                    <button onClick={activateViewMode}>save note</button>
+                </div>
+                : <div>
+                    {title}
+                    <button onClick={activateEditMode}>edit note</button>
+                </div>}
         </div>
     )
 };
