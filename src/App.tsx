@@ -9,31 +9,39 @@ export const state = {
     "notes": [
         {
             "id": v1(),
-            "title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500srm."
+            "title": "Это результат выполнение тестового задания. Для того, чтобы редактировать текущую заметеку нажмите Кнопку 'edit note' "
         },
         {
             "id": v1(),
-            "title": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
+            "title": "Чтобы удалить заметку, нажмите кнопку 'Delete' "
         },
         {
             "id": v1(),
-            "title": "The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content her. Various versions have evolved over the years, sometimes by accidnd the like)."
+            "title": "Добавить новый тег можнор с помощью кнопки 'Add tag' или с помощью кнопки Add note, введя нужное слово следующим образом '#слово' "
+        },
+        {
+            "id": v1(),
+            "title": "При нажатии на один из тегов отобразятся только те заметки, в которых есть выбранный тег. Кнопка 'Показать все заметки сбрасывает фильтр по тегам'"
         },
 
     ],
     "tags": [
         {
             "id": v1(),
-            "title": "Lorem"
+            "title": "результат"
         },
         {
             "id": v1(),
-            "title": "established"
+            "title": "удалить"
         },
         {
             "id": v1(),
-            "title": "readable"
-        }
+            "title": "тег"
+        },
+        {
+            "id": v1(),
+            "title": "фильтр"
+        },
     ]
 }
 
@@ -81,7 +89,7 @@ export const App = () => {
 
     return (
         <div className={style.App}>
-            <h1>Notes editor</h1>
+            <h1>Текстовый редактор с заметками</h1>
             <div className={style.notesAndTags}>
                 <Notes
                     notes={filteredNotes}
