@@ -1,0 +1,116 @@
+$backGroundColor: cornsilk;
+
+.App {
+  background-color: $backGroundColor;
+  height: 100vh;
+
+  h1 {
+    background-color: cyan;
+    text-align: center;
+  }
+
+  .notesAndTags {
+    background-color: cornflowerblue;
+    display: flex;
+    flex-direction: column;
+
+    .notesContainer {
+      padding: 20px;
+      background-color: darkgrey;
+
+
+      .addNoteForm {
+        background-color: $backGroundColor;
+        display: flex;
+        justify-content: center;
+
+        .addNoteButton {
+          margin: 20px;
+        }
+
+        .input {
+          padding: 10px;
+          margin: 20px;
+          border-radius: 4px;
+          flex-basis: 80%;
+        }
+      }
+
+      .notesList {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+
+        .notes {
+          background-color: chocolate;
+          display: flex;
+          flex-direction: column;
+
+          align-items: center;
+          margin: 20px;
+          padding: 20px;
+          border: 1px solid silver;
+          border-radius: 10px;
+
+          .note {
+            padding: 20px;
+          }
+
+          .deleteNoteButton {
+            border-radius: 10px;
+            border: 1px solid silver;
+            background-color: #efe6ef;
+          }
+        }
+      }
+    }
+
+    .tagsContainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      .addTagForm {
+        margin: 10px;
+        padding: 10px;
+        background-color: cornsilk;
+        border-radius: 10px;
+        border: 1px solid silver;
+
+        .addTagButton {
+        }
+
+        .input {
+          margin: 10px;
+          border-radius: 5px;
+
+        }
+      }
+
+      .tags {
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .tagForm {
+          padding: 10px;
+
+          .tag {
+          }
+
+          .deleteTagButton {
+
+          }
+        }
+      }
+    }
+
+
+  }
+
+  .showAllTagsContainer {
+    text-align: center;
+    background-color: chocolate;
+  }
+}

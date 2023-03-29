@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
+import style from '../../App.module.scss'
 
 export type TagType = {
     id: string
@@ -22,25 +23,28 @@ export const Tags: React.FC<TagsPropsType> = (props) => {
     const setTagTitle = (event: ChangeEvent<HTMLInputElement>) => setTitle(event.currentTarget.value)
 
     return (
-        <div>
-            <h2>
-                <button onClick={addTagHandler}>Add tag</button>
-                <input value={title} onChange={setTagTitle}/>
-            </h2>
+        <div className={style.tagsContainer}>
+            <div className={style.addTagForm}>
+                <button onClick={addTagHandler} className={style.addTagButton}>Add tag</button>
+                <input value={title} onChange={setTagTitle} className={style.input}/>
+            </div>
+            <div className={style.tags}>
+                {props.tags.map((tag) => {
+                        const removeTagHandler = () => props.removeTag(tag.id)
 
-            {props.tags.map((tag) => {
-                    const removeTagHandler = () => props.removeTag(tag.id)
+                        const changeTagFilterHandler = () => props.changeTagFilter(tag.title)
 
-                    const changeTagFilterHandler = () => props.changeTagFilter(tag.title)
+                        return (
+                            <div key={tag.id} className={style.tagForm}>
+                                <button onClick={changeTagFilterHandler} className={style.tag}>{tag.title}</button>
+                                <button onClick={removeTagHandler} className={style.deleteTagButton}>X</button>
+                            </div>
+                        )
+                    }
+                )}
 
-                    return (
-                        <div key={tag.id}>
-                            <button onClick={changeTagFilterHandler}>{tag.title}</button>
-                            <button onClick={removeTagHandler}>X</button>
-                        </div>
-                    )
-                }
-            )}
+            </div>
+
         </div>
     );
 };

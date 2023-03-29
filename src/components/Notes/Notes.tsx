@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import {Note} from "./Note/Note";
 import {TagType} from "../Tags/Tags";
 import {v1} from "uuid";
-import style from './Notes.module.css'
+import style from '../../App.module.scss'
 
 export type NoteType = {
     id: string
@@ -20,13 +20,15 @@ type NotesPropsType = {
 
 export const Notes: React.FC<NotesPropsType> = (props) => {
     const [title, setTitle] = useState('')
+
+
     const addNoteHandler = () => {
         props.addNote(title.replace(/[^a-zа-яё0-9\s]/gi, ''))
         setTitle('')
 
+
         let titleArray = title.trim().split(' ') // из строки сделали массив для обработки
         let newArray: Array<TagType> = []
-
         for (let i = 0; i < titleArray.length; i++) {
             if (titleArray[i].startsWith('#')) {
                 let newTag = {id: v1(), title: titleArray[i].replace(/[^a-zа-яё0-9\s]/gi, '')}
@@ -35,27 +37,33 @@ export const Notes: React.FC<NotesPropsType> = (props) => {
             }
         }
     }
+
+
+
     const setNoteTitle = (event: ChangeEvent<HTMLInputElement>) => setTitle(event.currentTarget.value)
 
     return (
-        <div className={style.NotesContainer}>
-            <h2 className={style.addForm}>
-                <button onClick={addNoteHandler}>add note</button>
-                <input value={title} onChange={setNoteTitle}/>
-            </h2>
-            {props.notes.map((note) => {
-                const removeNoteHandler = () => props.removeNote(note.id)
-                const changeNoteNameHandler = (newTitle: string) => {
-                    props.changeNoteName(note.id, newTitle)
-                }
+        <div className={style.notesContainer}>
+            <div className={style.addNoteForm}>
+                <button className={style.addNoteButton} onClick={addNoteHandler}>add note</button>
+                <input value={title} onChange={setNoteTitle} placeholder={'Введите текст'} className={style.input}/>
+            </div>
+            <div className={style.notesList}>
+                {props.notes.map((note) => {
+                    const removeNoteHandler = () => props.removeNote(note.id)
+                    const changeNoteNameHandler = (newTitle: string) => {
+                        props.changeNoteName(note.id, newTitle)
+                    }
 
-                return (
-                    <div key={note.id}>
-                        <Note title={note.title} changeNoteName={changeNoteNameHandler}/>
-                        <button onClick={removeNoteHandler}>X</button>
-                    </div>
-                )
-            })}
+                    return (
+                        <div key={note.id} className={style.notes}>
+                            <Note title={note.title} changeNoteName={changeNoteNameHandler}/>
+                            <button onClick={removeNoteHandler} className={style.deleteNoteButton}>Delete</button>
+                        </div>
+                    )
+                })}
+            </div>
+
         </div>
     );
 };

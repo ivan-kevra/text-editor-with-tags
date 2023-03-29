@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
+import style from '../../../App.module.scss'
 
 type NotePropsType = {
     title: string
@@ -19,12 +20,14 @@ export const Note: React.FC<NotePropsType> = (props) => {
 
     const changeTitleHandler = (event: ChangeEvent<HTMLInputElement>) => setTitle(event.currentTarget.value)
 
+
+
     return (
-        <>
+        <div className={style.note}>
             {editMode
                 ? <input value={title} onChange={changeTitleHandler} autoFocus onBlur={activateViewMode}/>
                 : <span onDoubleClick={activateEditMode}>{title}</span>}
-        </>
+        </div>
     )
 };
 
